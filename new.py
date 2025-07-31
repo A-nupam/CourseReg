@@ -2,34 +2,26 @@ import requests
 from bs4 import BeautifulSoup
 import time
 import urllib3
-import pygame;
-pygame.mixer.init()
-def play_buzzer():
-    pygame.mixer.music.load("buzzer.mp3")
-    pygame.mixer.music.play()
+# import pygame;
+# pygame.mixer.init()
+# def play_buzzer():
+#     pygame.mixer.music.load("buzzer.mp3")
+#     pygame.mixer.music.play()
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-COURSE_PAGE_URL = "https://reg.exam.dtu.ac.in/student/courseRegistration/6497168af608d957ec3b5778"
-REGISTRATION_BASE = "https://reg.exam.dtu.ac.in/student/courseRegister/6497168af608d957ec3b5778/"
+COURSE_PAGE_URL = "BASE_URL/YOUR_UNIQUE_URL"
+REGISTRATION_BASE = "BASE_URL/YOUR_UNIQUE_URL"
 REFRESH_INTERVAL = 5  # seconds
 
 TARGET_COURSES = {
-    "CYBER LAWS":"686e5513d00bc35c8c12b7ef",
-    "INDIAN ECONOMY": "686e5513d00bc35c8c12b73b",
-    "BASIC COMMUNICATION SKILLS":"686e5513d00bc35c8c12b73f",
-    "MARKETING MANAGEMENT":"686e5513d00bc35c8c12b747",
-    "BASIC ECONOMETRICS": "686e5513d00bc35c8c12b7f3",
-    "LOGISTICS MANAGEMENT": "686e5513d00bc35c8c12b7f7",
-    "MACROECONOMICS": "686e5513d00bc35c8c12b813",
-    "CREATIVE WRITING SKILLS": "686e5513d00bc35c8c12b817",
-    "MARKETING RESEARCH": "686e5513d00bc35c8c12b81f",
-    "TOTAL QUALITY MANAGEMENT": "686e5513d00bc35c8c12b823",
+    "COURSE_NAME_YOU_WANT_TO_REG": "TOKEN_VALUE_FOR_CODE",
+    
 }
 
 COOKIES = {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDk3MTY4YWY2MDhkOTU3ZWMzYjU3NzgiLCJzc2lkIjozMDc0LCJpYXQiOjE3NTI2MzMxODV9.IRYQpJoU3OvMqwPp5XxhPVc0XwbjhrH6_nN3mB8eoKo",
-    "connect.sid": "s%3AH5JQBo0DaAYDq0WS9lMrjhv9BSUicUXS.CbwWLxzvLH4A0zheJG97%2FE%2B1vA4j9R6wS9FwaUfBbgc"
+    "token": "ADD_YOUR_TOKEN_ID",
+    "connect.sid": "ADD_YOUR_SESSION_ID"
 }
 
 HEADERS = {
@@ -55,9 +47,10 @@ def check_and_register():
                 # print("✅ Registered!" if reg.status_code == 200 else f"⚠️ Failed! Status: {reg.status_code}")
                 if reg.status_code ==200:
                     print("Registered!! Yay")
-                    play_buzzer()
+                    # play_buzzer() 
                 else:
                     print(f"Failed! Status:  {reg.status_code}")
+                    print("Response:", reg.text)
                 return True
     return False
 
